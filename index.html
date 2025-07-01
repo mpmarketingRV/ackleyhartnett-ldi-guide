@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Laser Drill Hole Inspection Machine Digital Guide</title>
+  <title>Laser Drill Inspection Machine Digital Guide</title>
   <style>
     body {
       margin: 0;
@@ -76,6 +76,39 @@
       transform: scale(1.05);
     }
 
+    .carousel-container {
+      text-align: center;
+    }
+
+    .carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .carousel img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+
+    .carousel button {
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .carousel button:hover {
+      background-color: #003366;
+    }
+
     footer {
       background-color: #001f3f;
       text-align: center;
@@ -113,7 +146,7 @@
   </header>
 
   <main>
-    <!-- Left Column: Sketchfab + AR Viewer -->
+    <!-- Left Column -->
     <div class="half">
       <h2>3D Viewer</h2>
       <div class="sketchfab-embed-wrapper">
@@ -130,23 +163,52 @@
       </div>
 
       <div class="ar-viewer">
-        <h2>View in AR (iPhone Only)</h2>
+        <h2>View in AR</h2>
         <a rel="ar" href="LDI.usdz">
           <img src="thumbnail.png" alt="LDI Machine Thumbnail">
         </a>
       </div>
     </div>
 
-    <!-- Right Column: Embedded PDF -->
+    <!-- Right Column -->
     <div class="half">
-      <h2>Technical PDF</h2>
+      <h2>Product Guide</h2>
       <iframe src="LDIAHrebrand.pdf" type="application/pdf"></iframe>
+
+      <div class="carousel-container">
+        <h2>Product Photos</h2>
+        <div class="carousel">
+          <button onclick="prevSlide()">❮</button>
+          <img id="carouselImage" src="product1.jpg" alt="Product Photo">
+          <button onclick="nextSlide()">❯</button>
+        </div>
+      </div>
     </div>
   </main>
 
   <footer>
     <p>© 2025 Ackley Hartnett | <a href="https://ackleyhartnett.com" target="_blank">ackleyhartnett.com</a></p>
   </footer>
+
+  <script>
+    const images = ["product1.jpg", "product2.jpg", "product3.jpg", "product4.jpg"];
+    let currentIndex = 0;
+    const imgElement = document.getElementById("carouselImage");
+
+    function showImage(index) {
+      imgElement.src = images[index];
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+  </script>
 
 </body>
 </html>
